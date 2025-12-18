@@ -408,9 +408,10 @@ extension ABI.Element.Function {
         }
         var returnArray: [String: Any] = [:]
         for i in outputs.indices {
-            returnArray["\(i)"] = values[i]
             if !outputs[i].name.isEmpty {
                 returnArray[outputs[i].name] = values[i]
+            } else {
+                returnArray["\(i)"] = values[i]
             }
         }
         return returnArray

@@ -104,6 +104,19 @@ public struct CodableTransaction: Sendable {
             eip2930Compatible?.accessList = newValue ?? []
         }
     }
+    
+    public mutating func setSignature(
+        v: UInt8,
+        r: Data,
+        s: Data
+    ) throws {
+        let unmarshalled = SECP256K1.UnmarshaledSignature(
+            v: v,
+            r: r,
+            s: s
+        )
+        self.envelope.setUnmarshalledSignatureData(unmarshalled)
+    }
 
     // MARK: - Properties to contract encode/sign data only
 

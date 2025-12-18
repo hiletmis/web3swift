@@ -90,7 +90,7 @@ extension ABIDecoder {
         case .array(type: let subType, length: let length):
             switch type.arraySize {
             case .dynamicSize:
-                if subType.isStatic {
+                if type.isStatic {
                     // uint[] like, expect length and elements
                     guard elementItself.count >= 32 else {break}
                     var dataSlice = elementItself[startIndex ..< startIndex + 32]
@@ -119,11 +119,7 @@ extension ABIDecoder {
                         let (v, c) = decodeSingleType(type: subType, data: dataSlice, pointer: subpointer)
                         guard let valueUnwrapped = v, let consumedUnwrapped = c else {break}
                         toReturn.append(valueUnwrapped)
-                        if subType.isStatic {
-                            subpointer = subpointer + consumedUnwrapped
-                        } else {
-                            subpointer = consumedUnwrapped // need to go by nextElementPointer
-                        }
+                        subpointer = subpointer + consumedUnwrapped
                     }
                     return (toReturn, nextElementPointer)
                 }
@@ -212,7 +208,7 @@ extension ABIDecoder {
             let elementPointer = UInt64(bn)
             let startIndex = UInt64(data.startIndex)
             let elementItself = data[startIndex + elementPointer ..< startIndex + UInt64(data.count)]
-            let nextElement = pointer + type.memoryUsage
+            let nextElement = type.memoryUsage
             return (Data(elementItself), nextElement)
         }
     }
