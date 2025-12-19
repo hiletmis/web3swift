@@ -24,7 +24,7 @@ public struct Block {
     public var receiptsRoot: Data
     public var miner: EthereumAddress? // MARK: This is NOT optional in web3js
     public var difficulty: BigUInt
-    public var totalDifficulty: BigUInt
+    public var totalDifficulty: BigUInt?
     public var extraData: Data
     public var size: BigUInt
     public var gasLimit: BigUInt
