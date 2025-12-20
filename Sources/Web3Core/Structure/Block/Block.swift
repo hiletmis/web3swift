@@ -32,7 +32,7 @@ public struct Block {
     public var baseFeePerGas: BigUInt?
     public var timestamp: Date
     public var transactions: [TransactionInBlock]
-    public var uncles: [Data]
+    public var uncles: [Data]?
 
     enum CodingKeys: String, CodingKey {
         case number
@@ -94,11 +94,12 @@ extension Block: Decodable {
 
         self.transactions = try container.decode([TransactionInBlock].self, forKey: .transactions)
 
-        let unclesStrings = try container.decode([String].self, forKey: .uncles)
+        let unclesStrings = try container.decodeIfPresent([String].self, forKey: .uncles) ?? []
         self.uncles = try unclesStrings.map {
             guard let data = Data.fromHex($0) else { throw Web3Error.dataError }
             return data
         }
+
     }
 }
 
