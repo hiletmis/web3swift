@@ -374,7 +374,7 @@ extension DefaultContractProtocol {
         let methodSignature = data[data.startIndex ..< data.startIndex + 4].toHexString().addHexPrefix().lowercased()
 
         guard let function = methods[methodSignature]?.first else { return nil }
-        return function.decodeInputData(Data(data[data.startIndex + 4 ..< data.startIndex + data.count]))
+        return function.decodeInputData(data)
     }
 
     public func decodeEthError(_ data: Data) -> [String: Any]? {
