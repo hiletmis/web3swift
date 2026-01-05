@@ -18,7 +18,7 @@ extension APIRequest {
 
     var parameters: [RequestParameter] {
         switch self {
-        case .gasPrice, .blockNumber, .getNetwork, .getAccounts, .getTxPoolStatus, .getTxPoolContent:
+        case .gasPrice, .blockNumber, .getNetwork, .getAccounts, .getTxPoolStatus, .getTxPoolContent, .maxPriorityFeePerGas:
             return [RequestParameter]()
 
         case .estimateGas(let transactionParameters, let blockNumber):
@@ -100,6 +100,7 @@ extension APIRequest {
         case .createAccount: return "personal_createAccount"
         case .getTxPoolStatus: return "txpool_status"
         case .getTxPoolContent: return "txpool_content"
+        case .maxPriorityFeePerGas: return "eth_maxPriorityFeePerGas"
         }
     }
 }

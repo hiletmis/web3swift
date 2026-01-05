@@ -28,6 +28,7 @@ public protocol IEth {
     func getLogs(eventFilter: EventFilterParameters) async throws -> [EventLog]
 
     func gasPrice() async throws -> BigUInt
+    func maxPriorityFeePerGas() async throws -> BigUInt
 
     func getTransactionCount(for address: EthereumAddress, onBlock: BlockNumber) async throws -> BigUInt
 

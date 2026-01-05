@@ -58,6 +58,12 @@ public extension IEth {
 }
 
 public extension IEth {
+    func maxPriorityFeePerGas() async throws -> BigUInt {
+        try await APIRequest.sendRequest(with: self.provider, for: .maxPriorityFeePerGas).result
+    }
+}
+
+public extension IEth {
     func code(for address: EthereumAddress) async throws -> Hash {
         try await code(for: address, onBlock: .latest)
     }

@@ -82,6 +82,9 @@ public enum APIRequest {
 
     /// Gas price request
     case gasPrice
+    
+    /// maxPriorityFeePerGas request
+    case maxPriorityFeePerGas
 
     /// Get last block number
     case blockNumber
