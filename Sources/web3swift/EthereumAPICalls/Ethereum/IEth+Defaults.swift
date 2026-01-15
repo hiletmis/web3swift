@@ -52,6 +52,12 @@ public extension IEth {
 }
 
 public extension IEth {
+    func chainId() async throws -> BigUInt {
+        try await APIRequest.sendRequest(with: self.provider, for: .chainId).result
+    }
+}
+
+public extension IEth {
     func gasPrice() async throws -> BigUInt {
         try await APIRequest.sendRequest(with: self.provider, for: .gasPrice).result
     }

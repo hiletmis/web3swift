@@ -18,6 +18,8 @@ extension APIRequest {
 
     var parameters: [RequestParameter] {
         switch self {
+        case .chainId:
+            return []
         case .gasPrice, .blockNumber, .getNetwork, .getAccounts, .getTxPoolStatus, .getTxPoolContent, .maxPriorityFeePerGas:
             return [RequestParameter]()
 
@@ -76,6 +78,7 @@ extension APIRequest {
 
     public var call: String {
         switch self {
+        case .chainId: return "eth_chainId"
         case .gasPrice: return "eth_gasPrice"
         case .blockNumber: return "eth_blockNumber"
         case .getNetwork: return "net_version"

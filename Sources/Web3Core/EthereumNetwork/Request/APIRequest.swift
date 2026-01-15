@@ -80,6 +80,9 @@ public enum APIRequest {
     // MARK: - Official Ethereum API
     // eth Namespace - https://ethereum.org/en/developers/docs/apis/json-rpc/#json-rpc-methods
 
+    /// Chain Id request
+    case chainId
+    
     /// Gas price request
     case gasPrice
     

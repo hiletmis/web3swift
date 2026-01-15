@@ -27,6 +27,8 @@ public protocol IEth {
 
     func getLogs(eventFilter: EventFilterParameters) async throws -> [EventLog]
 
+    func chainId() async throws -> BigUInt
+
     func gasPrice() async throws -> BigUInt
     func maxPriorityFeePerGas() async throws -> BigUInt
 
